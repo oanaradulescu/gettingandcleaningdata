@@ -26,21 +26,23 @@
 
 library(data.table)
 
-# training
-
-# training set
 # - Features are normalized and bounded within [-1,1].
 # - Each feature vector is a row on the text file.
 
 x.train <- read.table("UCI HAR Dataset/train/X_train.txt")
+x.test <- read.table("UCI HAR Dataset/test/X_test.txt")
 
-# training labels
+# activity class
 y.train <- read.table("UCI HAR Dataset/train/y_train.txt")
 names(y.train) <- c("Activity")
+y.test <- read.table("UCI HAR Dataset/test/y_test.txt")
+names(y.test) <- c("Activity")
 
 # each row identifies the subject who performed the activity for each window sample
 subj.train <- read.table("UCI HAR Dataset/train/subject_train.txt")
 names(subj.train) <- c("Subject")
+subj.test <- read.table("UCI HAR Dataset/test/subject_test.txt")
+names(subj.test) <- c("Subject")
 
 # summary(subj.train)
 # summary(x.train)
@@ -48,16 +50,10 @@ names(subj.train) <- c("Subject")
 # 
 # summary(y.train)
 
-# test
-x.test <- read.table("UCI HAR Dataset/test/X_test.txt")
-y.test <- read.table("UCI HAR Dataset/test/y_test.txt")
-names(y.test) <- c("Activity")
-subj.test <- read.table("UCI HAR Dataset/test/subject_test.txt")
-names(subj.test) <- c("Subject")
-
 f <- read.table("UCI HAR Dataset/features.txt")
 a <- read.table("UCI HAR Dataset/activity_labels.txt")
 
+# tag w activity class and subject
 df.train <- data.frame(x.train, y.train, subj.train)
 df.test <- data.frame(x.test, y.test, subj.test)
 
